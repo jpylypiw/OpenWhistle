@@ -14,7 +14,7 @@
 
 ![.NET Version](https://img.shields.io/badge/dotnet-net8.0-blue)
 
-[Installation](#installation) - [Docker Environment](#environment-variables) — [Preview](#preview)
+[Installation](#how-to-install) — [Docker Environment](#environment-variables) — [Preview](#preview)
 
 </div>
 
@@ -36,10 +36,50 @@ A system must be created to ensure that the whistleblower remains anonymous at a
 ## Preview
 
 <div align="center">
-    <img src="/screenshot.png" alt="screenshot" width="600"/>
+    <img src="screenshot.jpg" alt="screenshot" width="600"/>
 </div>
 
-## Installation
+## Live Demo
+
+To get a better insight into the software, we provide an online demo.
+
+<https://demo.openwhistle.net> (Certificate is provided by Let's Encrypt)
+
+- **Username**: demo
+- **Password**: demo
+
+The server runs in Baden-Württemberg, Germany.
+
+The demo is currently reset manually and automatically receives the latest version of the software.
+
+## How to Install
+
+### Docker
+
+We recommend using the Docker image for installation.
+
+The image is provided by GitHub and can be started with the following command:
+
+```bash
+docker run -d --restart=always -e ASPNETCORE_HTTP_PORTS='4009' -p 4009:4009 --name openwhistle ghcr.io/jpylypiw/openwhistle:main
+```
+
+OpenWhistle is now running on <http://0.0.0.0:4009>.
+
+### Behind Reverse Proxy
+
+For privacy reasons, it is essential to configure the reverse proxy correctly.
+Please note that the access log must be switched off so that the whistleblower remains anonymous.
+
+#### NGINX
+
+```nginx
+location / {
+    proxy_pass         http://localhost:4009/;
+    access_log    off;
+    log_not_found off;
+}
+```
 
 ## Environment Variables
 
