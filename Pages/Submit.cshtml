@@ -1,0 +1,29 @@
+﻿@page
+@model OpenWhistle.Pages.SubmitModel
+@{
+    if (!HttpMethods.IsPost(Request.Method))
+    {
+        <form method="post" class="needs-validation" novalidate>
+                <div class="form-row">
+                <div class="form-group">
+                    <label for="textAreaMessage">Example textarea</label>
+                    <textarea class="form-control" id="textAreaMessage" rows="10" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkBoxPrivacy" required>
+                    <label class="form-check-label" for="checkBoxPrivacy">
+                        I have read the privacy policy and hereby confirm that I have not entered any personal data in the message.
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    }
+    else {
+        <div class="alert alert-success" role="alert">
+            This is a success alert—check it out!
+        </div>
+    }
+}

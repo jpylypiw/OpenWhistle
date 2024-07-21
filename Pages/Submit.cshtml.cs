@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OpenWhistle.Pages
 {
-    public class IndexModel : PageModel
+    public class SubmitModel : PageModel
     {
         public void OnGet()
         {
-            
         }
+
     }
 }
