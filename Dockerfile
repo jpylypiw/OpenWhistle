@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["whistly.csproj", "."]
-RUN dotnet restore "./whistly.csproj"
+COPY ["OpenWhistle.csproj", "."]
+RUN dotnet restore "./OpenWhistle.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "./whistly.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./OpenWhistle.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./whistly.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./OpenWhistle.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "whistly.dll"]
+ENTRYPOINT ["dotnet", "OpenWhistle.dll"]

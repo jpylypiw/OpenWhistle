@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace whistly.Pages
+namespace OpenWhistle.Pages
 {
     public class IndexModel : PageModel
     {
